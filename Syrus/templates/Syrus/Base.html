@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+</head>
+<body>
+<canvas id="myChart" width="400" height="400"></canvas>
+<script>
+var ctx = document.getElementById('myChart');
+var myLineChart = new Chart(ctx, {
+    "type":"line",
+    "data": {
+              "datasets": [
+                { 
+                  "label":"Pulse",
+                  "data": [
+                    {% for i in coal%}
+                    {   x: {{i.1}} ,y:{{i.0}}  },
+                    {% endfor %}
+                    ],
+                  "fill":false,
+                  "borderColor":"rgb(255, 255, 255)",
+                  "lineTension":0.1
+                }
+              ]
+            },
+             // this is the part that will make it work... see .. xAxes type:'linear'
+            "options":{
+              legend: {
+                
+                labels: {
+                    fontColor: "white",
+                    fontSize: 15
+                }
+            },
+                responsive: true, 
+                title: {
+                     // optional: your title here
+                },
+                scales: {
+                    xAxes: [{
+                           type: 'linear', // MANDATORY TO SHOW YOUR POINTS! (THIS IS THE IMPORTANT BIT) 
+                           display: true, // mandatory
+                          scaleLabel: {
+                                display: true, // mandatory
+                                labelString: 'Count', // optional 
+                                fontColor:"White"
+                          },
+                          gridLines: {
+                            display:false,
+                            color: "#fffff",
+                          },
+                          ticks:{
+                            fontColor:"White"
+                          }
+                      }], 
+                     yAxes: [{ // and your y axis customization as you see fit...
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'BPM',
+                            fontColor:"White"
+                        },
+                        gridLines: {
+                            color: "#ffffff",
+                          },
+                        ticks: {
+                          min: 70,
+                          max: 120,
+                          fontColor:"White"
+            }
+                    }],
+                }
+            }
+        }
+    );
+</script>
+</body>
+</html>
