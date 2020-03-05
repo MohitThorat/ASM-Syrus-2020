@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="{% static 'plugins/icheck-bootstrap/icheck-bootstrap.min.css' %}">
 </head>
 <body>
-<canvas id="myChart" width="400" height="400"></canvas>
+<canvas id="myChart" width="400" height="200"></canvas>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
 <script src="{% static 'plugins/jquery/jquery.min.js' %}"></script>
 
@@ -40,7 +40,7 @@ var ctx = document.getElementById('myChart').getContext('2d');
     "data": {
               "datasets": [
                 { 
-                  "label":"Million Metric Tonnes of Carbon Diaoxide",
+                  "label":"Million Metric Tonnes of Carbon Dioxide",
                   "data": [
                     {% for i in coal%}
                     {   x: {{i.0}} ,y:{{i.1}}  },
@@ -100,10 +100,10 @@ var ctx = document.getElementById('myChart').getContext('2d');
     "data": {
               "datasets": [
                 { 
-                  "label":"Million Metric Tonnes of Carbon Diaoxide",
+                  "label":"Million Metric Tonnes of Carbon Dioxide",
                   "data": [
                     {% for i in FinalData%}
-                    {   x: {{i.0}} ,y:{{i.1}}  },
+                    {   x: {{i.0}}  ,y:{{i.1}}  },
                     {% endfor %}
                     ],
                   "fill":false,
@@ -139,20 +139,23 @@ var ctx = document.getElementById('myChart').getContext('2d');
                         display: true,
                         scaleLabel: {
                             display: true,
-                            labelString: 'Coal Electric Power Sector CO2 Emissions',
+                            labelString: 'Natural Gas Electric Power Sector CO2 Emissions',
                             fontColor:"Black"
                         },
                         gridLines:{
                           color:"#00000",
                         },
                         ticks: {
-                          fontColor:"Black"
+                          fontColor:"Black",
+                          stepSize:200
+  
             }
                     }],
                 }
             }
         }
     );
+
 </script>
 </body>
 </html>
