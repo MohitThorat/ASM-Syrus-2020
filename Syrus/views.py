@@ -17,7 +17,7 @@ def HomePage(request):
     print(FinalData[0])
     context = {
         'coal':FinalData[0],
-        'FinalData':FinalData[0],
+        'FinalData':FinalData[8],
         'FinalData':FinalData[0],
         'FinalData':FinalData[0],
         'FinalData':FinalData[0],
